@@ -1,0 +1,74 @@
+{
+  "title": "Brewers Social Club",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connecter Brewers Social Club",
+        "description": "Utilisez une clé API BSC avec la permission read:*.",
+        "data": {
+          "url": "URL de l'API BSC",
+          "api_key": "Clé API"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Renouveler la clé API BSC",
+        "description": "La clé actuelle a été refusée. Saisissez une nouvelle clé read:*.",
+        "data": {
+          "api_key": "Nouvelle clé API"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossible de joindre l'API BSC",
+      "invalid_auth": "Clé API invalide ou sans autorisation",
+      "invalid_url": "URL invalide"
+    },
+    "abort": {
+      "already_configured": "Cette API BSC est déjà configurée"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options BSC",
+        "data": {
+          "modules": "Modules à charger",
+          "scan_interval": "Intervalle de rafraîchissement (secondes)"
+        }
+      }
+    }
+  },
+  "selector": {
+    "modules": {
+      "options": {
+        "overview": "Vue d'ensemble",
+        "members": "Membres",
+        "partners": "Partenaires",
+        "benefits": "Avantages",
+        "group_orders": "Commandes groupées",
+        "brewfather": "Brewfather",
+        "rapt": "RAPT",
+        "payments": "Encaissements",
+        "storage": "Stockage"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "api_connected": {"name": "API connectée"}
+    },
+    "sensor": {
+      "members_total": {"name": "Membres"},
+      "members_active": {"name": "Membres actifs"},
+      "profiles_pending": {"name": "Profils à compléter"},
+      "invitations_pending": {"name": "Invitations en attente"},
+      "partners_total": {"name": "Partenaires"},
+      "benefits_active": {"name": "Avantages actifs"},
+      "group_orders_active": {"name": "Commandes groupées actives"},
+      "brewfather_active": {"name": "Brassins actifs"},
+      "rapt_controllers": {"name": "Contrôleurs RAPT"},
+      "payments_total": {"name": "Encaissements"},
+      "storage_members": {"name": "Membres stockés"}
+    }
+  }
+}

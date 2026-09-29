@@ -1,0 +1,74 @@
+{
+  "title": "Brewers Social Club",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect Brewers Social Club",
+        "description": "Use a BSC API key with the read:* permission.",
+        "data": {
+          "url": "BSC API URL",
+          "api_key": "API key"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Renew the BSC API key",
+        "description": "The current key was rejected. Enter a new read:* key.",
+        "data": {
+          "api_key": "New API key"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to the BSC API",
+      "invalid_auth": "Invalid or unauthorized API key",
+      "invalid_url": "Invalid URL"
+    },
+    "abort": {
+      "already_configured": "This BSC API is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "BSC options",
+        "data": {
+          "modules": "Modules to load",
+          "scan_interval": "Update interval (seconds)"
+        }
+      }
+    }
+  },
+  "selector": {
+    "modules": {
+      "options": {
+        "overview": "Overview",
+        "members": "Members",
+        "partners": "Partners",
+        "benefits": "Benefits",
+        "group_orders": "Group orders",
+        "brewfather": "Brewfather",
+        "rapt": "RAPT",
+        "payments": "Payments",
+        "storage": "Storage"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "api_connected": {"name": "API connected"}
+    },
+    "sensor": {
+      "members_total": {"name": "Members"},
+      "members_active": {"name": "Active members"},
+      "profiles_pending": {"name": "Profiles to complete"},
+      "invitations_pending": {"name": "Pending invitations"},
+      "partners_total": {"name": "Partners"},
+      "benefits_active": {"name": "Active benefits"},
+      "group_orders_active": {"name": "Active group orders"},
+      "brewfather_active": {"name": "Active batches"},
+      "rapt_controllers": {"name": "RAPT controllers"},
+      "payments_total": {"name": "Payments"},
+      "storage_members": {"name": "Stored members"}
+    }
+  }
+}

@@ -1,0 +1,34 @@
+type: sections
+title: Brewers Social Club
+sections:
+  - type: grid
+    title: Membres
+    cards:
+      - type: tile
+        entity: sensor.brewers_social_club_membres
+      - type: tile
+        entity: sensor.brewers_social_club_membres_actifs
+      - type: tile
+        entity: sensor.brewers_social_club_profils_a_completer
+      - type: tile
+        entity: sensor.brewers_social_club_invitations_en_attente
+  - type: grid
+    title: Activité
+    cards:
+      - type: tile
+        entity: sensor.brewers_social_club_partenaires
+      - type: tile
+        entity: sensor.brewers_social_club_avantages_actifs
+      - type: tile
+        entity: sensor.brewers_social_club_commandes_groupees_actives
+      - type: tile
+        entity: sensor.brewers_social_club_encaissements
+  - type: grid
+    title: Production
+    cards:
+      - type: entities
+        title: Brassins et fermentation
+        entities:
+          - sensor.brewers_social_club_brassins_actifs
+          - sensor.brewers_social_club_controleurs_rapt
+

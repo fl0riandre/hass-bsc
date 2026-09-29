@@ -1,0 +1,13 @@
+{
+  "domain": "brewers_social_club",
+  "name": "Brewers Social Club",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/kloud-best/hass-bsc",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/kloud-best/hass-bsc/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "0.1.0"
+}

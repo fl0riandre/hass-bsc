@@ -1,0 +1,14 @@
+get_api_data:
+  name: Lire un endpoint BSC
+  description: >-
+    Exécute une requête GET authentifiée vers un endpoint /api/... et retourne
+    sa réponse JSON. Cette action ne peut réaliser aucune écriture.
+  fields:
+    path:
+      name: Chemin API
+      description: Chemin absolu commençant par /api/ avec ses paramètres éventuels.
+      required: true
+      example: /api/admin/brewfather/batches?scope=all
+      selector:
+        text:
+
