@@ -49,7 +49,8 @@
         "brewfather": "Brewfather",
         "rapt": "RAPT",
         "payments": "Encaissements",
-        "storage": "Stockage"
+        "storage": "Stockage",
+        "planning": "Planning du jour"
       }
     }
   },
@@ -68,7 +69,8 @@
       "brewfather_active": {"name": "Brassins actifs"},
       "rapt_controllers": {"name": "Contrôleurs RAPT"},
       "payments_total": {"name": "Encaissements"},
-      "storage_members": {"name": "Membres stockés"}
+      "storage_members": {"name": "Membres stockés"},
+      "planning_today": {"name": "Planning aujourd’hui"}
     }
   }
 }

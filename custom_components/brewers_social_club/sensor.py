@@ -20,6 +20,7 @@ from .const import (
     MODULE_OVERVIEW,
     MODULE_PARTNERS,
     MODULE_PAYMENTS,
+    MODULE_PLANNING,
     MODULE_RAPT,
     MODULE_STORAGE,
 )
@@ -30,6 +31,7 @@ from .data import first_number as _first_number
 from .data import items as _items
 from .data import nested as _nested
 from .entity import BscCoordinatorEntity
+from .planning import normalized_planning
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -113,6 +115,16 @@ SENSORS: tuple[BscSensorDescription, ...] = (
         translation_key="payments_total",
         icon="mdi:cash-register",
         value_fn=lambda d: len(_items(d, MODULE_PAYMENTS, "encaissements")),
+    ),
+    BscSensorDescription(
+        key="planning_today",
+        translation_key="planning_today",
+        icon="mdi:calendar-today",
+        value_fn=lambda d: normalized_planning(_nested(d, MODULE_PLANNING, default={}))["count"],
+        attributes_fn=lambda d: {
+            **normalized_planning(_nested(d, MODULE_PLANNING, default={})),
+            **(_nested(d, MODULE_PLANNING, "window", default={})),
+        },
     ),
     BscSensorDescription(
         key="storage_members",

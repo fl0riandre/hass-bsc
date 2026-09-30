@@ -26,6 +26,7 @@ MODULE_BREWFATHER = "brewfather"
 MODULE_RAPT = "rapt"
 MODULE_PAYMENTS = "payments"
 MODULE_STORAGE = "storage"
+MODULE_PLANNING = "planning"
 
 MODULES = (
     MODULE_OVERVIEW,
@@ -37,6 +38,7 @@ MODULES = (
     MODULE_RAPT,
     MODULE_PAYMENTS,
     MODULE_STORAGE,
+    MODULE_PLANNING,
 )
 
 DEFAULT_MODULES = list(MODULES)
@@ -51,6 +53,9 @@ MODULE_ENDPOINTS = {
     MODULE_RAPT: "/api/admin/rapt/controllers",
     MODULE_PAYMENTS: "/api/admin/bsc-payments",
     MODULE_STORAGE: "/api/admin/storage",
+    MODULE_PLANNING: "/api/admin/planning",
 }
+
+PLANNING_TIMEZONE = "Europe/Paris"
 
 DEFAULT_UPDATE_INTERVAL = timedelta(seconds=DEFAULT_SCAN_INTERVAL)

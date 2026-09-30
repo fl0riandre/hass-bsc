@@ -8,7 +8,7 @@ library. Home Assistant injects its shared aiohttp session at runtime.
 from __future__ import annotations
 
 import asyncio
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from typing import Any
 
@@ -91,12 +91,17 @@ class BscApiClient:
         await self.async_get("/health")
         return await self.async_get("/api/me")
 
-    async def async_fetch_modules(self, modules: Iterable[str]) -> BscApiData:
+    async def async_fetch_modules(
+        self,
+        modules: Iterable[str],
+        endpoint_overrides: Mapping[str, str] | None = None,
+    ) -> BscApiData:
         """Fetch enabled modules concurrently and isolate optional failures."""
 
-        selected = [module for module in modules if module in MODULE_ENDPOINTS]
+        endpoints = {**MODULE_ENDPOINTS, **dict(endpoint_overrides or {})}
+        selected = [module for module in modules if module in endpoints]
         results = await asyncio.gather(
-            *(self.async_get(MODULE_ENDPOINTS[module]) for module in selected),
+            *(self.async_get(endpoints[module]) for module in selected),
             return_exceptions=True,
         )
 
@@ -110,4 +115,3 @@ class BscApiClient:
                 continue
             data[module] = result
         return BscApiData(modules=data, errors=errors)
-

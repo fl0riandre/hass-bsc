@@ -11,7 +11,15 @@ from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .api import BscApiAuthError, BscApiClient, BscApiData, BscApiError
-from .const import CONF_MODULES, CONF_SCAN_INTERVAL, DEFAULT_MODULES, DEFAULT_SCAN_INTERVAL, DOMAIN
+from .const import (
+    CONF_MODULES,
+    CONF_SCAN_INTERVAL,
+    DEFAULT_MODULES,
+    DEFAULT_SCAN_INTERVAL,
+    DOMAIN,
+    MODULE_PLANNING,
+)
+from .planning import planning_day_path
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -39,9 +47,15 @@ class BscDataUpdateCoordinator(DataUpdateCoordinator[BscApiData]):
     async def _async_update_data(self) -> BscApiData:
         modules = self.entry.options.get(CONF_MODULES, DEFAULT_MODULES)
         try:
-            return await self.client.async_fetch_modules(modules)
+            planning_path, planning_window = planning_day_path()
+            result = await self.client.async_fetch_modules(
+                modules,
+                endpoint_overrides={MODULE_PLANNING: planning_path},
+            )
+            if MODULE_PLANNING in result.modules:
+                result.modules[MODULE_PLANNING]["window"] = planning_window
+            return result
         except BscApiAuthError as err:
             raise ConfigEntryAuthFailed from err
         except BscApiError as err:
             raise UpdateFailed(str(err)) from err
-

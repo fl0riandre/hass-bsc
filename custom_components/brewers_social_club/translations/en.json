@@ -49,7 +49,8 @@
         "brewfather": "Brewfather",
         "rapt": "RAPT",
         "payments": "Payments",
-        "storage": "Storage"
+        "storage": "Storage",
+        "planning": "Today's planning"
       }
     }
   },
@@ -68,7 +69,8 @@
       "brewfather_active": {"name": "Active batches"},
       "rapt_controllers": {"name": "RAPT controllers"},
       "payments_total": {"name": "Payments"},
-      "storage_members": {"name": "Stored members"}
+      "storage_members": {"name": "Stored members"},
+      "planning_today": {"name": "Today's planning"}
     }
   }
 }

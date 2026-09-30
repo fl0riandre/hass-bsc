@@ -32,7 +32,7 @@ from .const import (
 class BscConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a BSC config flow."""
 
-    VERSION = 1
+    VERSION = 2
 
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> FlowResult:
         errors: dict[str, str] = {}

@@ -11,10 +11,31 @@ from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import BscApiClient
-from .const import CONF_API_KEY, DOMAIN, PLATFORMS, SERVICE_GET_API_DATA
+from .const import (
+    CONF_API_KEY,
+    CONF_MODULES,
+    DEFAULT_MODULES,
+    DOMAIN,
+    MODULE_PLANNING,
+    PLATFORMS,
+    SERVICE_GET_API_DATA,
+)
 from .coordinator import BscDataUpdateCoordinator
 
 BscConfigEntry = ConfigEntry[BscDataUpdateCoordinator]
+
+
+async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    """Enable newly introduced default modules on existing installations."""
+
+    if entry.version < 2:
+        options = dict(entry.options)
+        modules = list(options.get(CONF_MODULES, DEFAULT_MODULES))
+        if MODULE_PLANNING not in modules:
+            modules.append(MODULE_PLANNING)
+        options[CONF_MODULES] = modules
+        hass.config_entries.async_update_entry(entry, options=options, version=2)
+    return True
 
 
 async def async_setup(hass: HomeAssistant, _config: dict) -> bool:

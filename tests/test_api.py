@@ -95,7 +95,15 @@ class ApiClientTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result.modules["overview"]["overview"]["totalMembers"], 12)
         self.assertIn("partners", result.errors)
 
+    async def test_dynamic_endpoint_override_is_used(self) -> None:
+        path = "/api/admin/planning?from=2026-09-29T22%3A00%3A00.000Z&to=2026-09-30T22%3A00%3A00.000Z"
+        url = f"https://api.example.test{path}"
+        session = FakeSession({url: FakeResponse(200, {"success": True, "planning": {}})})
+        client = BscApiClient(session, "https://api.example.test", "key")
+        result = await client.async_fetch_modules(["planning"], {"planning": path})
+        self.assertIn("planning", result.modules)
+        self.assertEqual(session.requests[0][0], url)
+
 
 if __name__ == "__main__":
     unittest.main()
-

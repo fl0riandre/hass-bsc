@@ -24,6 +24,20 @@ sections:
       - type: tile
         entity: sensor.brewers_social_club_encaissements
   - type: grid
+    title: Planning du jour
+    cards:
+      - type: tile
+        entity: sensor.brewers_social_club_planning_aujourd_hui
+      - type: markdown
+        content: >-
+          {% set events = state_attr('sensor.brewers_social_club_planning_aujourd_hui', 'events') or [] %}
+          {% for event in events %}
+          **{{ event.title }}** · {{ event.start }} → {{ event.end }}
+          {{ event.resources | join(', ') }}
+          {% else %}
+          Rien de planifié aujourd'hui.
+          {% endfor %}
+  - type: grid
     title: Production
     cards:
       - type: entities
@@ -31,4 +45,3 @@ sections:
         entities:
           - sensor.brewers_social_club_brassins_actifs
           - sensor.brewers_social_club_controleurs_rapt
-

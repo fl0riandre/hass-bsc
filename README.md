@@ -10,6 +10,7 @@ faciles à utiliser dans les dashboards et automatisations.
 - rafraîchissement centralisé et configurable ;
 - compteurs membres, partenaires, avantages, commandes groupées et paiements ;
 - capteurs dynamiques pour les brassins Brewfather actifs ;
+- planning BSC du jour, recalculé à chaque relève selon le fuseau Europe/Paris ;
 - température, consigne, gravité et état des contrôleurs RAPT ;
 - diagnostic de connexion sans exposer la clé API ;
 - modules activables séparément.
@@ -63,6 +64,13 @@ Modules disponibles :
 - RAPT
 - Encaissements
 - Stockage
+- Planning du jour
+
+Le capteur **Planning aujourd’hui** expose le nombre d'opérations planifiées.
+Ses attributs contiennent la fenêtre UTC interrogée, le nombre de réservations,
+les allocations de contenants et jusqu'à 50 événements normalisés. Plusieurs
+réservations appartenant à la même opération sont regroupées afin d'éviter de
+dupliquer un brassage pour chaque ressource mobilisée.
 
 ## Lire un endpoint arbitraire
 
